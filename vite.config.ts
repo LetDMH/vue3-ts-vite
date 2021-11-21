@@ -1,7 +1,7 @@
 /*
  * @Author: dingminghui
  * @Date: 2021-10-30 15:46:10
- * @LastEditTime: 2021-10-30 16:42:08
+ * @LastEditTime: 2021-11-17 00:27:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-tsx-vite/vite.config.ts
@@ -18,4 +18,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  css: {
+    preprocessorOptions: {
+      scss: {}
+    }
+  }
 })

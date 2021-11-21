@@ -1,7 +1,7 @@
 /*
  * @Author: dingminghui
  * @Date: 2021-10-30 15:46:10
- * @LastEditTime: 2021-11-04 11:46:09
+ * @LastEditTime: 2021-11-17 01:00:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vue3-tsx-vite/src/main.ts
@@ -12,8 +12,9 @@ import router from './router';
 import store from "./store";
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
-import * as Sentry from "@sentry/vue";
-import { Integrations } from "@sentry/tracing";
+import * as Sentry from '@sentry/vue';
+import { Integrations } from '@sentry/tracing';
+import http from './apis/request';
 
 const app = createApp(App);
 
@@ -33,6 +34,11 @@ if (process.env.NODE_ENV === 'production') {
     tracesSampleRate: 1.0,
   });
 }
+
+// app.config.globalProperties.$http = http;
+// 挂载全局属性，用到挂载的属性时，需要在每个组件中使用getCurrentInstance()获取挂载的属性
+// 尤大推荐provide/inject
+app.provide('$http', http);
 
 app.use(router);
 app.use(store);
